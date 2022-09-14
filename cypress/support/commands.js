@@ -46,21 +46,6 @@ Cypress.Commands.add(
   }
 )
 
-Cypress.Commands.add('postarUsuarioDuplicado', () => {
-  return cy.request({
-    method: 'POST',
-    url: '/usuarios',
-    failOnStatusCode: false, //caso contrário os testes param qdo o retorno não é 200
-    body: {
-      //por algum motivo está retornando status 200 e realizando o POST  <<<<
-      nome: 'TESTEF',
-      email: 'TESTEF@TESTE.COM',
-      password: 'TESTANDO123TESTANDO',
-      administrador: 'true'
-    }
-  })
-})
-
 Cypress.Commands.add('logar', (email, senha) => {
   cy.request({
     method: 'POST',
