@@ -36,7 +36,7 @@ Cypress.Commands.add('postarUsuarioSemSucesso', () => {
 
 Cypress.Commands.add(
   'rest',
-  (method = 'GET', url = '/', body = null, failOnStatusCode = false) => {
+  (url = '/', method = 'GET', body = null, failOnStatusCode = false) => {
     return cy.request({
       method: method,
       url: url,
@@ -59,7 +59,7 @@ Cypress.Commands.add('logar', (email, senha) => {
 })
 
 Cypress.Commands.add('buscarUsuarioParaLogin', () => {
-  cy.rest('GET', '/usuarios').then(res => {
+  cy.rest('/usuarios').then(res => {
     expect(res.body).to.haveOwnProperty('usuarios')
     return {
       email: res.body.usuarios[0].email,
