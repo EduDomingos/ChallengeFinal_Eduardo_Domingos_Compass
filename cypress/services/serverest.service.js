@@ -31,4 +31,10 @@ export default class Serverest {
       cy.log("bearer: "+ Cypress.env('bearer').slice(7))
     }
 
+// Produtos //
+
+    static buscarProdutos(){
+      return cy.rest(URL_PRODUTOS)
+    }
+
 }
