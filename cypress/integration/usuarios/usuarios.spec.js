@@ -5,7 +5,7 @@ import ValidaServerest from '../../services/validaServerest.service'
 
 describe('Casos de teste sobre a rota /usuarios da API Serverest', () => {
 
-  it.only('Deve retornar todos os usuários cadastrados na Serverest', () => {
+  it('Deve retornar todos os usuários cadastrados na Serverest', () => {
     Serverest.buscarUsuarios().then( res => {
       ValidaServerest.validarBuscaDeUsuarios(res)
     })
@@ -19,21 +19,11 @@ describe('Casos de teste sobre a rota /usuarios da API Serverest', () => {
     })
   })
 
-  it('Deve validar o comando personalizado', () => {
-    cy.rest().then( res => {
-      expect(res).to.be.a('object')
-      cy.log(JSON.stringify(res))
-    })
-  })
-
   it('Deve realizar login com sucesso', () => {
-    cy.buscarUsuarioParaLogin().then( usuario => {
-      cy.logar(usuario.email, usuario.senha).then(res=>{
-        expect(res).to.be.a('object')
-        expect(res.body.message).to.be.a('string')
-        expect(res.body).to.haveOwnProperty('authorization')
-        var bearer = res.body.authorization.slice(7)
-        cy.log(bearer)
+    Serverest.buscarUsuarioParaLogin()
+    cy.get('@usuarioLogin').then( usuario => {
+      Serverest.logar(usuario).then( res =>{
+        ValidaServerest.validaLoginComSucesso(res)
       })
     })
   })
