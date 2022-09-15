@@ -25,4 +25,10 @@ export default class Serverest {
     static logar(usuario){
       return cy.rest(URL_LOGIN, 'POST', usuario)
     }
+
+    static salvarBearer(res){
+      Cypress.env('bearer', res.body.authorization)
+      cy.log("bearer: "+ Cypress.env('bearer').slice(7))
+    }
+
 }

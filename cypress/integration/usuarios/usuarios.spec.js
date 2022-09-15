@@ -24,7 +24,11 @@ describe('Casos de teste sobre a rota /usuarios da API Serverest', () => {
     cy.get('@usuarioLogin').then( usuario => {
       Serverest.logar(usuario).then( res =>{
         ValidaServerest.validaLoginComSucesso(res)
+        Serverest.salvarBearer(res)
       })
     })
   })
+
+
+
 })
