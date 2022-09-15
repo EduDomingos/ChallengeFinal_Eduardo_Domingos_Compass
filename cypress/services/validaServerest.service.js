@@ -28,5 +28,12 @@ export default class ValidaServerest {
 
   }
 
+  static validarCadastroDeProdutoComSucesso(res){
+    expect(res).to.be.a('object')
+    expect(res.body.message).to.be.a('string')
+    expect(res.body.message).to.be.equal('Cadastro realizado com sucesso')
+    expect(res.body).to.haveOwnProperty('_id')
+
+  }
 
 }

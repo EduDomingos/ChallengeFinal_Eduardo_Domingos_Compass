@@ -37,4 +37,21 @@ export default class Serverest {
       return cy.rest(URL_PRODUTOS)
     }
 
+    static cadastrarProdutoComSucesso(){
+      return cy.request({
+        method: 'POST',
+        url: URL_PRODUTOS,
+        failOnStatusCode: true,
+        headers: {
+          authorization: Cypress.env('bearer')
+        },
+        body: {
+          nome: "Telescópio x1000",
+          preco: "1000",
+          descricao: "lentes 56pkm",
+          quantidade: 12
+        }
+      })
+    }
+
 }
