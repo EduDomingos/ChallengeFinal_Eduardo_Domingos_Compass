@@ -7,14 +7,14 @@ import Factory from '../../fixtures/factory'
 describe('Casos de teste sobre a rota /usuarios da API Serverest', () => {
     it('Deve retornar todos os usuários cadastrados na Serverest', () => {
         Serverest.buscarUsuarios().then(res => {
+            cy.contractValidation(res, 'get-usuarios', 200)
             ValidaServerest.validarBuscaDeUsuarios(res)
         })
     })
 
     it('Não deve postar um novo usuário administrador existente', () => {
         cy.postarUsuarioSemSucesso().then(res => {
-            expect(res).to.be.a('object')
-            expect(res.body.message).to.be.a('string')
+            cy.contractValidation(res, 'post-usuarios', 400)
             expect(res.body.message).to.be.equal(
                 'Este email já está sendo usado'
             )
@@ -31,7 +31,7 @@ describe('Casos de teste sobre a rota /usuarios da API Serverest', () => {
         })
     })
 
-    it.only('Deve buscar e salvar um usuário em um arquivo json', () => {
+    it('Deve buscar e salvar um usuário em um arquivo json', () => {
         const inteiro = Factory.gerarInteiroAleatorio()
         Serverest.buscarUsuarios().then(res => {
             cy.writeFile(
@@ -42,7 +42,7 @@ describe('Casos de teste sobre a rota /usuarios da API Serverest', () => {
         })
     })
 
-    it.only('Deve buscar o usuário no arquivo json', () => {
+    it('Deve buscar o usuário no arquivo json', () => {
         cy.fixture('usuario.json').then(json => {
             let usuario = {
                 email: json.email,
