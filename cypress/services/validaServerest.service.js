@@ -21,7 +21,7 @@ export default class ValidaServerest {
   static validarbuscarProdutos(res){
     expect(res).to.be.a('object')
     expect(res.body.quantidade).to.be.a('number')
-    expect(res.body.quantidade).to.be.greaterThan(2)
+    expect(res.body.quantidade).to.be.greaterThan(1)
     expect(res.body.produtos[0]).to.haveOwnProperty('nome')
     expect(res.body.produtos[0]).to.haveOwnProperty('preco')
     expect(res.body.produtos[0]).to.haveOwnProperty('descricao')
