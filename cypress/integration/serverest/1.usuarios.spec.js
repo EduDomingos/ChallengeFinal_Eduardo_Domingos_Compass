@@ -9,6 +9,7 @@ describe('Casos de teste sobre a rota /usuarios da API Serverest', () => {
         Serverest.buscarUsuarios().then(res => {
             cy.contractValidation(res, 'get-usuarios', 200)
             ValidaServerest.validarBuscaDeUsuarios(res)
+            cy.log(JSON.stringify(res.body.usuarios))
         })
     })
 
@@ -25,6 +26,7 @@ describe('Casos de teste sobre a rota /usuarios da API Serverest', () => {
         Serverest.buscarUsuarioParaLogin()
         cy.get('@usuarioLogin').then(usuario => {
             Serverest.logar(usuario).then(res => {
+                cy.contractValidation(res, 'post-login', 200)
                 ValidaServerest.validaLoginComSucesso(res)
                 Serverest.salvarBearer(res)
             })
@@ -52,6 +54,13 @@ describe('Casos de teste sobre a rota /usuarios da API Serverest', () => {
                 ValidaServerest.validaLoginComSucesso(res)
                 Serverest.salvarBearer(res)
             })
+        })
+    })
+
+    it('Deve deletar o usuário salvo no arquivo json pelo id', () => {
+        Serverest.deletarUsuario().then(res => {
+            cy.contractValidation(res, 'delete-usuarios-by-id', 200)
+            ValidaServerest.validarDeletarUsuario(res)
         })
     })
 })

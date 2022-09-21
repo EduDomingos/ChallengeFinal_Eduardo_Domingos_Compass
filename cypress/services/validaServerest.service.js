@@ -29,4 +29,8 @@ export default class ValidaServerest {
         expect(res.body.message).to.be.equal('Cadastro realizado com sucesso')
         expect(res.body).to.haveOwnProperty('_id')
     }
+
+    static validarDeletarUsuario(res) {
+        expect(res.body.message).to.be.equal('Registro excluído com sucesso')
+    }
 }

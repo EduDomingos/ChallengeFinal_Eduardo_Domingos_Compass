@@ -69,4 +69,10 @@ export default class Serverest {
             }
         })
     }
+
+    static deletarUsuario() {
+        return cy.fixture('usuario.json').then(json => {
+            cy.rest(URL_USUARIOS + '/' + json._id, 'DELETE')
+        })
+    }
 }
