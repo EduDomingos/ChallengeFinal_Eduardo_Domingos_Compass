@@ -12,6 +12,10 @@ Encontra-se no atual repositório seguintes artefatos:
 -   **Schemas para testes de contratos** (./cypress/fixtures/schemas);
 -   **Service Objects** [Design Pattern] (./cypress/services).
 
+# Como instalar
+
+Basta clonar o repositório para sua máquina local e estará pronto para uso.
+
 # Tecnologias utilizadas
 
 -   ![JavaScript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
