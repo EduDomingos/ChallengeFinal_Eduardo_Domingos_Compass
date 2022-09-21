@@ -1,4 +1,5 @@
 import Factory from '../fixtures/factory'
+import { faker, Faker } from '@faker-js/faker'
 
 const URL_USUARIOS = '/usuarios'
 const URL_LOGIN = '/login'
@@ -16,10 +17,11 @@ export default class Serverest {
     }
 
     static buscarUsuarioParaLogin() {
+        const inteiro = faker.datatype.number(5)
         cy.request(URL_USUARIOS).then(res => {
             cy.wrap({
-                email: res.body.usuarios[2].email,
-                password: res.body.usuarios[2].password
+                email: res.body.usuarios[inteiro].email,
+                password: res.body.usuarios[inteiro].password
             }).as('usuarioLogin')
         })
     }
