@@ -9,9 +9,7 @@ export default class ValidaServerest {
     }
 
     static validaLoginComSucesso(res) {
-        expect(res).to.be.a('object')
-        expect(res.body.message).to.be.a('string')
-        expect(res.body).to.haveOwnProperty('authorization')
+        expect(res.body.message).to.be.equal('Login realizado com sucesso')
     }
 
     static validarbuscarProdutos(res) {

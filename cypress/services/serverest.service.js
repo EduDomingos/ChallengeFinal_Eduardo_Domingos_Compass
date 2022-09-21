@@ -17,9 +17,10 @@ export default class Serverest {
 
     static buscarUsuarioParaLogin() {
         cy.request(URL_USUARIOS).then(res => {
+            let inteiro = Factory.gerarInteiroAleatorio()
             cy.wrap({
-                email: res.body.usuarios[0].email,
-                password: res.body.usuarios[0].password
+                email: res.body.usuarios[inteiro].email,
+                password: res.body.usuarios[inteiro].password
             }).as('usuarioLogin')
         })
     }
