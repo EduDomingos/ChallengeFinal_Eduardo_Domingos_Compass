@@ -1,4 +1,5 @@
 const Ajv = require('ajv')
+const { default: Factory } = require('../fixtures/factory')
 const ajv = new Ajv({ allErrors: true, verbose: true, strict: false })
 // ***********************************************
 // This example commands.js shows you how to
@@ -85,11 +86,13 @@ Cypress.Commands.add('logar', (email, senha) => {
 })
 
 Cypress.Commands.add('buscarUsuarioParaLogin', () => {
+    const inteiro = Factory.gerarInteiroAleatorio()
     cy.rest('/usuarios').then(res => {
         expect(res.body).to.haveOwnProperty('usuarios')
+
         return {
-            email: res.body.usuarios[0].email,
-            senha: res.body.usuarios[0].password
+            email: res.body.usuarios[inteiro].email,
+            senha: res.body.usuarios[inteiro].password
         }
     })
 })

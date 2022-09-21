@@ -76,4 +76,18 @@ export default class Serverest {
             cy.rest(URL_USUARIOS + '/' + json._id, 'DELETE')
         })
     }
+
+    static cadastrarCarrinhoComSucesso() {
+        return cy.fixture('produtos.json').then(produtos => {
+            cy.request({
+                method: 'POST',
+                url: URL_CARRINHOS,
+                body: produtos,
+                failOnStatusCode: true,
+                auth: {
+                    bearer: Cypress.env('bearer')
+                }
+            })
+        })
+    }
 }

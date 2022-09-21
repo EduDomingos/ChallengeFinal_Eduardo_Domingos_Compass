@@ -15,9 +15,10 @@ describe('Casos de teste sobre a rota /carrinho da API Serverest', () => {
             })
         })
 
-        it('Deve postar um novo produto com sucesso', () => {
-            Serverest.cadastrarProdutoComSucesso().then(res => {
-                ValidaServerest.validarCadastroDeProdutoComSucesso(res)
+        it('Deve cadastrar um novo carrinho com sucesso', () => {
+            Serverest.cadastrarCarrinhoComSucesso().then(res => {
+                ValidaServerest.validarCadastrarCarrinhoComSucesso(res)
+                cy.contractValidation(res, 'post-carrinho', 201)
             })
         })
     })

@@ -31,4 +31,8 @@ export default class ValidaServerest {
     static validarDeletarUsuario(res) {
         expect(res.body.message).to.be.equal('Registro excluído com sucesso')
     }
+
+    static validarCadastrarCarrinhoComSucesso(res) {
+        expect(res.body.message).to.be.equal('Cadastro realizado com sucesso')
+    }
 }
